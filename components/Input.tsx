@@ -1,27 +1,27 @@
 import React, { ChangeEventHandler } from 'react';
 
 interface InputProps {
-  error?: { status: boolean; message: string | undefined };
+  error: any; // { status: boolean; message: string | undefined };
   disabled?: boolean;
-  handleChange: ChangeEventHandler;
+  isRequired?: boolean;
   name: string;
   label: string;
+  register: any;
   type?: 'email' | 'password' | 'text';
-  value: string;
 }
 export const Input = ({
   error = { status: false, message: undefined },
   disabled = false,
-  handleChange,
+  isRequired = true,
   label,
   name,
-  type = 'text',
-  value
+  register,
+  type = 'text'
 }: InputProps) => {
   return (
     <div className='mb-4'>
       <label className='flex flex-col items-start '>
-        <span className={'block'}>{label}</span>
+        <span className={'block'}>{`${label}${isRequired && ' *'}`}</span>
         <input
           className={`appearance-none border border-black rounded w-full py-2 px-3 mt-1 leading-tight focus:shadow-outline ${
             error.status && 'border-red-500'
@@ -30,8 +30,7 @@ export const Input = ({
           name={name}
           disabled={disabled}
           type={type}
-          onChange={handleChange}
-          value={value}
+          {...(register(name), { required: isRequired })}
         />
       </label>
       {error.status && (

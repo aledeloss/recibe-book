@@ -3,6 +3,7 @@ import { Input } from './Input';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 type Inputs = {
+  instructions: string;
   title: string;
 };
 
@@ -29,6 +30,14 @@ const NewRecipeForm = () => {
         error={errors.title}
         isRequired={true}
         name='title'
+        register={register}
+      />
+      <Input
+        label='Instructions'
+        error={errors.title}
+        InputTag='textarea'
+        isRequired={false}
+        name='instructions'
         register={register}
       />
       <input type='submit' />

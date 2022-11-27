@@ -3,6 +3,7 @@ import React, { ChangeEventHandler } from 'react';
 interface InputProps {
   error: any; // { status: boolean; message: string | undefined };
   disabled?: boolean;
+  InputTag?: 'input' | 'textarea';
   isRequired?: boolean;
   name: string;
   label: string;
@@ -12,6 +13,7 @@ interface InputProps {
 export const Input = ({
   error = { status: false, message: undefined },
   disabled = false,
+  InputTag = 'input',
   isRequired = true,
   label,
   name,
@@ -21,8 +23,8 @@ export const Input = ({
   return (
     <div className='mb-4'>
       <label className='flex flex-col items-start '>
-        <span className={'block'}>{`${label}${isRequired && ' *'}`}</span>
-        <input
+        <span className={'block'}>{`${label}${isRequired ? ' *' : ''}`}</span>
+        <InputTag
           className={`appearance-none border border-black rounded w-full py-2 px-3 mt-1 leading-tight focus:shadow-outline ${
             error.status && 'border-red-500'
           }`}

@@ -1,26 +1,22 @@
-import React, { ChangeEventHandler, useState } from 'react';
+import React from 'react';
 import { Input } from './Input';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Button from './Button';
 
-type Inputs = {
+export type Inputs = {
   instructions: string;
   title: string;
+  prueba: string;
 };
 
 const NewRecipeForm = () => {
-  const [value, setValue] = useState('');
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  const handleChange: ChangeEventHandler = (event) => {
-    const eventTarget = event.target as HTMLInputElement;
-    setValue(eventTarget.value);
-  };
   console.log('ERRORS', errors);
 
   return (

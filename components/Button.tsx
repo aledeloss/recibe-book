@@ -3,21 +3,24 @@ import React from 'react';
 interface ButtonProps {
   disabled?: boolean;
   label?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const Button = ({
   disabled = false,
   label = 'Ok',
-  handleClick
+  handleClick,
+  type = 'button'
 }: ButtonProps) => {
   return (
     <button
-      className={`bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded ${
+      className={`bg-purple py-2 px-4 rounded float-right${
         disabled && 'opacity-50 cursor-not-allowed'
       }`}
       disabled={disabled}
       onClick={handleClick}
+      type={type}
     >
       {label}
     </button>

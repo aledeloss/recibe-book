@@ -1,42 +1,47 @@
-import React, { ChangeEventHandler } from 'react';
+import React from 'react';
+import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
+import { Inputs } from './NewRecipeForm';
 
+type InputName = 'title' | 'instructions' | 'ingredient' | 'quantity' | 'unity';
 interface InputProps {
-  error?: { status: boolean; message: string | undefined };
-  disabled?: boolean;
-  handleChange: ChangeEventHandler;
-  name: string;
+  error?: FieldError | undefined;
+  isDisabled?: boolean;
+  InputTag?: 'input' | 'textarea';
+  isRequired?: boolean;
+  name: InputName;
   label: string;
+  register: UseFormRegister<Inputs>;
+  style?: {};
   type?: 'email' | 'password' | 'text';
-  value: string;
 }
-export const Input = ({
-  error = { status: false, message: undefined },
-  disabled = false,
-  handleChange,
+
+export function Input({
+  error = undefined,
+  isDisabled = false,
+  InputTag = 'input',
+  isRequired = true,
   label,
   name,
-  type = 'text',
-  value
-}: InputProps) => {
+  register,
+  style,
+  type = 'text'
+}: InputProps) {
   return (
-    <div className='mb-4'>
+    <div className='mb-4' style={style && style}>
       <label className='flex flex-col items-start '>
-        <span className={'block'}>{label}</span>
-        <input
+        <span className={'block'}>{`${label}${isRequired ? ' *' : ''}`}</span>
+        <InputTag
           className={`appearance-none border border-black rounded w-full py-2 px-3 mt-1 leading-tight focus:shadow-outline ${
-            error.status && 'border-red-500'
+            error && 'border-red-500'
           }`}
-          id={name}
-          name={name}
-          disabled={disabled}
+          disabled={isDisabled}
           type={type}
-          onChange={handleChange}
-          value={value}
+          {...register(name, { required: isRequired })}
         />
       </label>
-      {error.status && (
+      {error && (
         <div className='mt-1 text-red-500 text-xs'>{error.message}</div>
       )}
     </div>
   );
-};
+}

@@ -43,7 +43,7 @@ const NewRecipeForm = () => {
         name='instructions'
         register={register}
       />
-      <input type='submit' />
+      <Button label='Add' type='submit' />
     </form>
   );
 };

@@ -2,16 +2,19 @@ import React from 'react';
 import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
 import { Inputs } from './NewRecipeForm';
 
+type InputName = 'title' | 'instructions' | 'ingredient' | 'quantity' | 'unity';
 interface InputProps {
   error?: FieldError | undefined;
   isDisabled?: boolean;
   InputTag?: 'input' | 'textarea';
   isRequired?: boolean;
-  name: 'title' | 'instructions';
+  name: InputName;
   label: string;
   register: UseFormRegister<Inputs>;
+  style?: {};
   type?: 'email' | 'password' | 'text';
 }
+
 export function Input({
   error = undefined,
   isDisabled = false,
@@ -20,10 +23,11 @@ export function Input({
   label,
   name,
   register,
+  style,
   type = 'text'
 }: InputProps) {
   return (
-    <div className='mb-4'>
+    <div className='mb-4' style={style && style}>
       <label className='flex flex-col items-start '>
         <span className={'block'}>{`${label}${isRequired ? ' *' : ''}`}</span>
         <InputTag

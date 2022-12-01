@@ -1,12 +1,15 @@
 import React from 'react';
-import { Input } from './Input';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Input } from './Input';
+import IngredientInput from './IngredientInput';
 import Button from './Button';
 
 export type Inputs = {
+  ingredient: string;
   instructions: string;
   title: string;
-  prueba: string;
+  quantity: string;
+  unity: string;
 };
 
 const NewRecipeForm = () => {
@@ -26,6 +29,10 @@ const NewRecipeForm = () => {
         error={errors.title}
         isRequired={true}
         name='title'
+        register={register}
+      />
+      <IngredientInput
+        errors={[errors.ingredient, errors.quantity, errors.unity]}
         register={register}
       />
       <Input

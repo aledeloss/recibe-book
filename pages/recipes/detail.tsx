@@ -9,10 +9,10 @@ const Detail = () => {
       <h3 className='text-xl mt-4'>Ingredients</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => {
-          const { name, quantity, unity } = ingredient;
+          const { name, quantity, unit } = ingredient;
           return (
             <li key={index}>{`* ${name} ${quantity ? quantity : ''} ${
-              unity ? unity : ''
+              unit ? unit : ''
             }`}</li>
           );
         })}

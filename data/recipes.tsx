@@ -6,7 +6,7 @@ export const recipes = [
       {
         name: 'harina leudante',
         quantity: '400',
-        unity: 'grs.'
+        unit: 'grs.'
       },
       {
         name: 'sal, pimienta y orégano'
@@ -14,12 +14,12 @@ export const recipes = [
       {
         name: 'aceite',
         quantity: '100',
-        unity: 'ml.'
+        unit: 'ml.'
       },
       {
         name: 'agua',
         quantity: '50',
-        unity: 'ml.'
+        unit: 'ml.'
       }
     ],
     directions:

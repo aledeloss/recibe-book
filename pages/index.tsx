@@ -11,15 +11,6 @@ const Home = () => {
     <div className='flex justify-center items-center'>
       <div className='text-5xl'>
         <h1>Welcome to My recipe book!</h1>
-        <button
-          className='border border-purple'
-          aria-label='Decrement value'
-          onClick={() => {
-            dispatch(addRecipe(recipes[0]));
-          }}
-        >
-          Decrement
-        </button>
         {JSON.stringify(myRecipes)}
       </div>
     </div>

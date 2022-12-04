@@ -2,7 +2,7 @@ import React from 'react';
 import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
 import { Inputs } from './NewRecipeForm';
 
-type InputName = 'title' | 'instructions' | 'ingredient' | 'quantity' | 'unity';
+type InputName = 'title' | 'directions' | 'ingredient' | 'quantity' | 'unit';
 interface InputProps {
   error?: FieldError | undefined;
   isDisabled?: boolean;

@@ -25,10 +25,10 @@ const IngredientInput = ({ register, errors }: IngredientInput) => {
           register={register}
         />
         <Input
-          label='Unity'
+          label='Unit'
           isRequired={false}
           error={errors[2]}
-          name='unity'
+          name='unit'
           register={register}
         />
       </fieldset>

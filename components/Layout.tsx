@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const Layout = ({ children }: { children: JSX.Element }) => {
   return (
@@ -10,7 +11,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <header className='bg-orange h-24 flex justify-center items-center'>
-        My recipe book
+        <Link href='/'>My recipe book</Link>
       </header>
       <main className='p-4'>{children}</main>
       <footer className='bg-orange h-12 flex justify-center items-center absolute bottom-0 w-full'>

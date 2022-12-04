@@ -5,7 +5,7 @@ export const recipes = [
     ingredients: [
       {
         name: 'harina leudante',
-        quantity: 400,
+        quantity: '400',
         unity: 'grs.'
       },
       {
@@ -13,12 +13,12 @@ export const recipes = [
       },
       {
         name: 'aceite',
-        quantity: 100,
+        quantity: '100',
         unity: 'ml.'
       },
       {
         name: 'agua',
-        quantity: 50,
+        quantity: '50',
         unity: 'ml.'
       }
     ],

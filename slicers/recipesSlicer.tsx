@@ -2,29 +2,26 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { recipe } from '../types/recipe';
 
-export interface CounterState {
-  value: number;
+export interface RecipesState {
+  value: recipe[];
 }
 
-const initialState: CounterState = {
-  value: 0
+const initialState: RecipesState = {
+  value: []
 };
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const RecipesSlice = createSlice({
+  name: 'recipes',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    addRecipe: (state, action: PayloadAction<recipe>) => {
+      state.value = [...state.value, action.payload];
     },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    deleteAll: (state) => {
+      state.value = [];
     }
   }
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { addRecipe, deleteAll } = RecipesSlice.actions;
+export default RecipesSlice.reducer;

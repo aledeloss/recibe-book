@@ -1,12 +1,20 @@
 import React from 'react';
+import { FieldError } from 'react-hook-form';
+import Button from './Button';
 import { Input } from './Input';
 
 interface IngredientInput {
+  addIngredient?: () => void;
   inputKey: number;
   register: any;
-  errors?: any[];
+  errors?: FieldError[] | undefined;
 }
-const IngredientInput = ({ inputKey, register, errors }: IngredientInput) => {
+const IngredientInput = ({
+  addIngredient,
+  inputKey,
+  register,
+  errors
+}: IngredientInput) => {
   return (
     <div className='flex gap-2 w-full'>
       <fieldset className='flex w-full justify-between gap-2'>
@@ -32,6 +40,7 @@ const IngredientInput = ({ inputKey, register, errors }: IngredientInput) => {
           register={register}
         />
       </fieldset>
+      {/* <Button label='+' handleClick={() => addIngredient()} /> */}
     </div>
   );
 };

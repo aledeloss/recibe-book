@@ -24,8 +24,38 @@ const NewRecipeForm = () => {
     formState: { errors }
   } = useForm<Inputs>();
 
+  const addIngredient = () => {
+    const inputKey = ingredientsInputs.length;
+    const newIngredients: JSX.Element[] = [
+      ...ingredientsInputs,
+      <IngredientInput
+        addIngredient={addIngredient}
+        key={inputKey}
+        inputKey={inputKey}
+        // errors={
+        //   errors.ingredients && [
+        //     errors.ingredients[0]?.name,
+        //     errors.ingredients[0]?.quantity,
+        //     errors.ingredients[0]?.unit
+        //   ]
+        // }
+        register={register}
+      />
+    ];
+    setIngredientsInputs(newIngredients);
+  };
+
+  const [ingredientsQuantity, setIngredientsQuantity] = useState(1);
+  const [ingredientsInputs, setIngredientsInputs] = useState<JSX.Element[]>([
+    <IngredientInput
+      addIngredient={addIngredient}
+      key={0}
+      inputKey={0}
+      register={register}
+    />
+  ]);
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     const { ingredients, directions, title } = data;
     const id = uuidv4();
     const newRecipe: recipe = {
@@ -37,8 +67,6 @@ const NewRecipeForm = () => {
     dispatch(addRecipe(newRecipe));
   };
 
-  const IngredientsInputs: ingredient[] = [];
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -48,22 +76,8 @@ const NewRecipeForm = () => {
         name='title'
         register={register}
       />
-      {/* TODO: This component should render several times if needed. */}
-      <IngredientInput
-        inputKey={0}
-        // errors={[errors.ingredients, errors.quantity, errors.unit]}
-        register={register}
-      />{' '}
-      <IngredientInput
-        inputKey={1}
-        // errors={[errors.ingredients, errors.quantity, errors.unit]}
-        register={register}
-      />{' '}
-      <IngredientInput
-        inputKey={2}
-        // errors={[errors.ingredients, errors.quantity, errors.unit]}
-        register={register}
-      />
+      {ingredientsInputs}
+      <Button label='Add ingredient' handleClick={() => addIngredient()} />
       <Input
         label='Directions'
         error={errors.title}

@@ -3,12 +3,13 @@ import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
 import { Inputs } from './NewRecipeForm';
 
 type InputName = 'title' | 'directions' | 'ingredient' | 'quantity' | 'unit';
+
 interface InputProps {
   error?: FieldError | undefined;
   isDisabled?: boolean;
   InputTag?: 'input' | 'textarea';
   isRequired?: boolean;
-  name: InputName;
+  name: any; // TODO: Set a more specific type
   label: string;
   register: UseFormRegister<Inputs>;
   style?: {};

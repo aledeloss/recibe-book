@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { Input } from './Input';
@@ -7,13 +7,12 @@ import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { addRecipe } from '../slicers/recipesSlicer';
+import { ingredient, recipe } from '../types/recipe';
 
 export type Inputs = {
-  ingredient: string;
+  ingredients: ingredient[];
   directions: string;
   title: string;
-  quantity: string;
-  unit: string;
 };
 
 const NewRecipeForm = () => {
@@ -26,18 +25,19 @@ const NewRecipeForm = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const { ingredient, directions, title, quantity, unit } = data;
+    console.log(data);
+    const { ingredients, directions, title } = data;
     const id = uuidv4();
-    const newRecipe = {
+    const newRecipe: recipe = {
       id,
       title,
-      ingredients: [{ name: ingredient, quantity, unit }],
+      ingredients,
       directions
     };
     dispatch(addRecipe(newRecipe));
   };
 
-  console.log('ERRORS', errors);
+  const IngredientsInputs: ingredient[] = [];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -50,7 +50,18 @@ const NewRecipeForm = () => {
       />
       {/* TODO: This component should render several times if needed. */}
       <IngredientInput
-        errors={[errors.ingredient, errors.quantity, errors.unit]}
+        inputKey={0}
+        // errors={[errors.ingredients, errors.quantity, errors.unit]}
+        register={register}
+      />{' '}
+      <IngredientInput
+        inputKey={1}
+        // errors={[errors.ingredients, errors.quantity, errors.unit]}
+        register={register}
+      />{' '}
+      <IngredientInput
+        inputKey={2}
+        // errors={[errors.ingredients, errors.quantity, errors.unit]}
         register={register}
       />
       <Input

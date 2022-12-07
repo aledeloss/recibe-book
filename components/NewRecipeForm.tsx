@@ -80,7 +80,7 @@ const NewRecipeForm = () => {
       <Button label='Add ingredient' handleClick={() => addIngredient()} />
       <Input
         label='Directions'
-        error={errors.title}
+        error={errors.directions}
         InputTag='textarea'
         isRequired={false}
         name='directions'

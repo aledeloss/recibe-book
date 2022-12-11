@@ -25,7 +25,7 @@ const NewRecipeForm = () => {
     formState: { errors }
   } = useForm<Inputs>();
 
-  const redirectUrlBase = 'http://localhost:3000/recipes/detail/';
+  const redirectUrlBase = '/recipes/detail/';
   const addIngredient = () => {
     const inputKey = ingredientsInputs.length;
     const newIngredients: JSX.Element[] = [

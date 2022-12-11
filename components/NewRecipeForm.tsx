@@ -24,6 +24,7 @@ const NewRecipeForm = () => {
     formState: { errors }
   } = useForm<Inputs>();
 
+  const redirectUrlBase = 'http://localhost:3000/recipes/detail/';
   const addIngredient = () => {
     const inputKey = ingredientsInputs.length;
     const newIngredients: JSX.Element[] = [
@@ -45,7 +46,7 @@ const NewRecipeForm = () => {
     setIngredientsInputs(newIngredients);
   };
 
-  const [ingredientsQuantity, setIngredientsQuantity] = useState(1);
+  const router = useRouter();
   const [ingredientsInputs, setIngredientsInputs] = useState<JSX.Element[]>([
     <IngredientInput
       addIngredient={addIngredient}
@@ -65,6 +66,7 @@ const NewRecipeForm = () => {
       directions
     };
     dispatch(addRecipe(newRecipe));
+    router.push(`${redirectUrlBase}${id}`);
   };
 
   return (

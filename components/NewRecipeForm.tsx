@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { addRecipe } from '../slicers/recipesSlicer';
 import { ingredient, recipe } from '../types/recipe';
+import { useRouter } from 'next/router';
 
 export type Inputs = {
   ingredients: ingredient[];

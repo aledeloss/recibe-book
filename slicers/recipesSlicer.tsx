@@ -20,11 +20,17 @@ export const RecipesSlice = createSlice({
     setStoredRecipes: (state, action: PayloadAction<recipe[]>) => {
       state.value = action.payload;
     },
+    deleteRecipe: (state, action: PayloadAction<string>) => {
+      state.value = state.value.filter(
+        (recipe) => recipe.id !== action.payload
+      );
+    },
     deleteAll: (state) => {
       state.value = [];
     }
   }
 });
 
-export const { addRecipe, deleteAll, setStoredRecipes } = RecipesSlice.actions;
+export const { addRecipe, deleteAll, deleteRecipe, setStoredRecipes } =
+  RecipesSlice.actions;
 export default RecipesSlice.reducer;

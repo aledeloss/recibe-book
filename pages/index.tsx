@@ -4,7 +4,6 @@ import RecipeCard from '../components/RecipeCard';
 
 const Home = () => {
   const myRecipes = useSelector((state: RootState) => state.recipes.value);
-  const dispatch = useDispatch();
 
   return (
     <div className='flex justify-center items-center'>

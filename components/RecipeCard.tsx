@@ -10,7 +10,7 @@ interface RecipeCardProps {
 const RecipeCard = ({ id, title, ingredients }: RecipeCardProps) => {
   return (
     <Link href={`/recipes/detail/${id}`}>
-      <h3>{title}</h3>
+      <h3 className='text-3xl'>{title}</h3>
       <ul className='flex'>
         {ingredients.map((ingredient, index) => {
           return (

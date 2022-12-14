@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import Header from './Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../app/store';
+import { setStoredRecipes } from '../slicers/recipesSlicer';
+import { recipe } from '../types/recipe';
 
 const Layout = ({ children }: { children: JSX.Element }) => {
+  const myRecipes: recipe[] = useSelector(
+    (state: RootState) => state.recipes.value
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Remove recipes from localStorage for debugging purposes:
+      // localStorage.removeItem('recipes');
+      const storedRecipes = localStorage.getItem('recipes');
+      if (storedRecipes?.length) {
+        dispatch(setStoredRecipes(JSON.parse(storedRecipes)));
+      }
+    }
+  }, []);
+
+  if (typeof window !== 'undefined') {
+    window.onunload = function () {
+      if (myRecipes.length > 0) {
+        localStorage.removeItem('recipes');
+        const savingRecipes = JSON.stringify(myRecipes);
+        localStorage.setItem('recipes', savingRecipes);
+      }
+    };
+  }
   return (
     <div className='w-screen min-h-screen bg-yellow'>
       <Head>

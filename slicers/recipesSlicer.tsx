@@ -17,11 +17,14 @@ export const RecipesSlice = createSlice({
     addRecipe: (state, action: PayloadAction<recipe>) => {
       state.value = [...state.value, action.payload];
     },
+    setStoredRecipes: (state, action: PayloadAction<recipe[]>) => {
+      state.value = action.payload;
+    },
     deleteAll: (state) => {
       state.value = [];
     }
   }
 });
 
-export const { addRecipe, deleteAll } = RecipesSlice.actions;
+export const { addRecipe, deleteAll, setStoredRecipes } = RecipesSlice.actions;
 export default RecipesSlice.reducer;
